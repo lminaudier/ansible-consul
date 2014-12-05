@@ -24,3 +24,12 @@
     copy=no
   sudo: yes
   when: consul_was_downloaded|changed
+
+- name: add consul to PATH
+  template: >
+    src=consul.sh.j2
+    dest=/etc/profile.d/consul.sh
+    owner=root
+    group=root
+    mode=0755
+  sudo: yes
