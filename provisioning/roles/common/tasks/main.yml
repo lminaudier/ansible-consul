@@ -1,0 +1,6 @@
+- name: ensure common packages are setup
+  apt: pkg={{item}} state=latest
+  sudo: yes
+  with_items:
+    - vim
+    - htop

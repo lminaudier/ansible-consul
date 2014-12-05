@@ -21,6 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network :private_network, ip: "192.168.111.222"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -64,7 +65,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   cf.am_policy_hub = true
   #   # cf.run_file = "motd.cf"
   # end
-  #
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "provisioning/playbook.yml"
+  end
+
   # You can also configure and bootstrap a client to an existing
   # policy server:
   #
