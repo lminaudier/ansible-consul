@@ -6,3 +6,5 @@ consul_download_folder: /tmp
 consul_home: /usr/local/consul
 consul_config_dir: /etc/consul.d
 consul_data_dir: "{{ consul_home }}/data"
+consul_user: "vagrant"
+consul_group: "consul"

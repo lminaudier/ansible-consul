@@ -33,3 +33,24 @@
     group=root
     mode=0755
   sudo: yes
+
+- name: create consul group
+  group: >
+    name={{consul_group}}
+    state=present
+  sudo: yes
+
+- name: create consul user
+  user: >
+    name={{consul_user}}
+    group={{consul_group}}
+  sudo: yes
+
+- name: set permissions
+  file: >
+    state=directory
+    path={{consul_home}}
+    owner={{consul_user}}
+    group={{consul_group}}
+    recurse=yes
+  sudo: yes
