@@ -24,12 +24,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "node1" do |n1|
       n1.vm.hostname = "node1"
-      n1.vm.network "private_network", ip: "10.0.1.1"
+      n1.vm.network "private_network", ip: "10.0.1.2"
   end
 
   config.vm.define "node2" do |n2|
       n2.vm.hostname = "node2"
-      n2.vm.network "private_network", ip: "10.0.1.2"
+      n2.vm.network "private_network", ip: "10.0.1.3"
   end
 
   # Create a private network, which allows host-only access to the machine
@@ -77,6 +77,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provisioning/playbook.yml"
+    ansible.groups = {
+      "node1" => ["10.0.1.2"],
+      "node2" => ["10.0.1.3"]
+    }
   end
 
   # You can also configure and bootstrap a client to an existing
