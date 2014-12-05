@@ -8,3 +8,4 @@ consul_config_dir: /etc/consul.d
 consul_data_dir: "{{ consul_home }}/data"
 consul_user: "vagrant"
 consul_group: "consul"
+consul_log_file: /var/log/consul.log

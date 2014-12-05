@@ -54,3 +54,12 @@
     group={{consul_group}}
     recurse=yes
   sudo: yes
+
+- name: setup upstart script
+  template: >
+    src=consul.conf.j2
+    dest=/etc/init/consul.conf
+    owner={{consul_user}}
+    group={{consul_group}}
+    mode=0755
+  sudo: yes
