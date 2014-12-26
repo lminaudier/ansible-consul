@@ -2,13 +2,13 @@
 - hosts: all
   roles:
     - common
-- hosts: node1
+- hosts: node1.consulcluster.dev
   roles:
     - consul
   vars:
-    consul_bind_addr: 10.0.1.1
-- hosts: node2
+    consul_bind_addr: 10.0.100.2
+- hosts: node2.consulcluster.dev
   roles:
     - consul
   vars:
-    consul_bind_addr: 10.0.1.2
+    consul_bind_addr: 10.0.100.3
