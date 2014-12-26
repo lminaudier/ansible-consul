@@ -3,7 +3,11 @@ description "Consul Agent"
 start on (local-filesystems and net-device-up IFACE!=lo)
 stop on runlevel [06]
 
-exec sudo -u {{ consul_user }} -g {{ consul_group }} {{ consul_home }}/bin/consul agent -server -bootstrap-expect 1 -data-dir {{ consul_data_dir }}  -bind={{ consul_bind_addr }} >> {{ consul_log_file }} 2>&1
+{% if consul_is_server %}
+  exec sudo -u {{ consul_user }} -g {{ consul_group }} {{ consul_home }}/bin/consul agent -server -bootstrap-expect 1 -node {{ ansible_hostname }} -data-dir {{ consul_data_dir }}  -bind={{ consul_bind_addr }} >> {{ consul_log_file }} 2>&1
+{% else %}
+  exec sudo -u {{ consul_user }} -g {{ consul_group }} {{ consul_home }}/bin/consul agent -node {{ ansible_hostname }} -data-dir {{ consul_data_dir }}  -bind={{ consul_bind_addr }} >> {{ consul_log_file }} 2>&1
+{% endif %}
 respawn
 respawn limit 10 10
 kill timeout 10
