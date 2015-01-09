@@ -11,11 +11,15 @@
     - "{{ consul_config_dir }}"
     - "{{ consul_download_folder }}"
 
+- name: check if consul has been downloaded
+  stat: path={{consul_archive_full_path}}
+  register: consul_archive_full_path
+
 - name: download consul
   get_url: >
     url={{consul_download}}
     dest={{consul_download_folder}}
-  register: consul_was_downloaded
+  when: consul_archive_full_path.stat.exists == False
 
 - name: copy and unpack
   unarchive: >
@@ -23,7 +27,7 @@
     dest={{ consul_home }}/bin
     copy=no
   sudo: yes
-  when: consul_was_downloaded|changed
+  when: consul_archive_full_path.stat.exists == False
 
 - name: add consul to PATH
   template: >
