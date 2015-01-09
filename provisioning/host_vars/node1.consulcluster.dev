@@ -1,0 +1,3 @@
+---
+consul_bind_addr: 10.0.100.2
+consul_is_server: true
