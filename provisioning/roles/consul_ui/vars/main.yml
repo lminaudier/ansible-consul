@@ -1,0 +1,6 @@
+---
+consul_ui_version: 0.4.1
+consul_ui_download_archive: "{{ consul_ui_version }}_web_ui.zip"
+consul_ui_download_url: "https://dl.bintray.com/mitchellh/consul/{{consul_ui_download_archive}}"
+consul_ui_download_dir: /tmp
+consul_ui_download_archive_full_path: "{{consul_ui_download_dir}}/{{consul_ui_download_archive}}"

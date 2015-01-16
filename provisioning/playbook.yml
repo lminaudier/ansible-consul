@@ -3,3 +3,4 @@
   roles:
     - common
     - consul
+    - consul_ui

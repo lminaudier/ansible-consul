@@ -1,0 +1,20 @@
+---
+- name: check if consul ui has been downloaded
+  stat: path={{ consul_ui_download_archive_full_path }}
+  register: consul_ui_archive
+
+- name: download consul ui
+  get_url: >
+    url={{ consul_ui_download_url }}
+    dest={{ consul_ui_download_dir }}
+
+- name: copy and unpack
+  unarchive: >
+    src={{ consul_ui_download_archive_full_path }}
+    dest={{ consul_dir }}
+    copy=no
+  sudo: yes
+
+- name: Rename consul ui dir from dist to ui
+  shell: /bin/mv {{ consul_dir }}/dist {{ consul_dir }}/ui
+  sudo: yes

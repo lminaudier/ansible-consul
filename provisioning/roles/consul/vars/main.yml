@@ -4,7 +4,7 @@ consul_archive: "{{ consul_version }}_linux_amd64.zip"
 consul_archive_full_path: "{{consul_download_folder}}/{{consul_archive}}"
 consul_download: "https://dl.bintray.com/mitchellh/consul/{{ consul_archive }}"
 consul_download_folder: /tmp
-consul_home: /usr/local/consul
+consul_home: "{{ consul_dir }}"
 consul_config_dir: /etc/consul.d
 consul_data_dir: "{{ consul_home }}/data"
 consul_user: "vagrant"

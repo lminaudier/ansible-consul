@@ -43,6 +43,18 @@ Simply run
 This will boot up some VMs in Virtualbox and upload your public SSH key to it (like
 it would happen on Digital Ocean for instance)
 
+#### Consul UI
+
+Consul UI is set up on each node. However, consul UI works only on localhost by
+default. To access it from you vagrant host, you can create a small SSH tunnel
+with with the following command
+
+    vagrant ssh node1 -- -L 8543:127.0.0.1:8500
+
+You can then access consul UI from your host browser via
+
+    http://localhost:8543
+
 ### Provision
 
 Use ansible to provision your freshly booted VMs

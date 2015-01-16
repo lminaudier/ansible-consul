@@ -1,3 +1,5 @@
 ---
 consul_bind_addr: 10.0.100.3
 consul_is_server: false
+consul_dir: /usr/local/consul
+consul_ui_dir: "{{ consul_dir }}/ui"
